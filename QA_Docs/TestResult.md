@@ -8,7 +8,7 @@
 
 ## 테스트 결과
 
-| ID | 테스트 항목 | 결과 |
+| TC ID | 테스트 항목 | 결과 |
 |---|---|---|
 | `BAT001` | TitleScreen 씬 로드 확인 | Pass |
 | `BAT002` | TitleScreen 필수 오브젝트 확인 | Pass |
