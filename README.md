@@ -1,3 +1,27 @@
+# Unity2D-BAT-Automation
+
+공개 Unity 2D 플랫포머 프로젝트 기반 BAT 자동화 포트폴리오입니다.
+
+## 포트폴리오 목적
+
+본 프로젝트는 공개 Unity 2D 프로젝트를 fork하여,  
+QA 자동화 포트폴리오 목적으로 BAT 테스트 설계 및 자동화 코드를 추가하는 프로젝트입니다.
+
+원본 게임 프로젝트의 개발물이 아닌,  
+테스트 케이스 설계, Unity Test Framework 기반 자동화 테스트,  
+CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
+
+## 원본 프로젝트 정보
+
+- Original Repository: 원본 링크
+- Unity Version: 2022.1.10f1
+- License: MIT License
+- Original Project: Prototype - 2D Platformer Game
+
+---
+
+## Original README
+
 # 🎮 Prototype 
 
 [![Unity](https://img.shields.io/badge/Unity-2022.1.10f1-blue?logo=unity)](https://github.com/topics/unity)
