@@ -13,7 +13,7 @@ CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
 
 ## 원본 프로젝트 정보
 
-- Original Repository: 원본 링크
+- Original Repository: https://github.com/practical-works/unity2d-prototype
 - Unity Version: 2022.1.10f1
 - License: MIT License
 - Original Project: Prototype - 2D Platformer Game
