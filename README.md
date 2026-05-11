@@ -23,6 +23,7 @@ CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
 - [BAT Test Plan](QA_Docs/BAT_TestPlan.md)
 - [BAT Test Cases](QA_Docs/BAT_TestCases.md)
 - [Automation Scope](QA_Docs/Automation_Scope.md)
+- [Test Result](QA_Docs/TestResult.md)
 
 ---
 
