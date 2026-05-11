@@ -15,15 +15,16 @@
 | `BAT005` | SampleLevel 씬 로드 확인 | Unity 프로젝트가 열린 상태 | Play Mode 테스트에서 SampleLevel 씬을 로드한다 | SampleLevel 씬이 오류 없이 로드된다 | Play Mode | High |
 | `BAT006` | 주요 Staging 씬 로드 확인 | Staging 씬 파일이 존재하는 상태 | 주요 Staging 씬을 순차적으로 로드한다 | 각 Staging 씬이 오류 없이 로드된다 | Play Mode | Medium |
 | `BAT007` | 치명적 에러 로그 확인 | Play Mode 테스트가 실행된 상태 | 테스트 실행 중 Error 또는 Exception 로그 발생 여부를 확인한다 | 치명적 에러 로그가 발생하지 않는다 | Play Mode | High |
-| `BAT008` | 주요 씬 치명적 오류 없음 확인 | 주요 씬이 로드 가능한 상태 | TitleScreen, SampleLevel, 주요 Staging 씬을 로드한다 | 씬 로드 중 Error 또는 Exception이 발생하지 않는다 | Play Mode | High |
+| `BAT008` | 주요 씬 연속 로드 확인 | 주요 씬 파일이 존재하는 상태 | TitleScreen, SampleLevel, 주요 Staging 씬을 순차적으로 로드한다 | 각 씬이 중단 없이 정상 로드된다 | Play Mode | Medium |
 
 ## 자동화 우선순위
 
-1. 메인 씬 로드 확인
+1. TitleScreen 씬 로드 확인
 2. Play Mode 진입 확인
-3. Player 오브젝트 존재 확인
-4. Main Camera 존재 확인
-5. 기본 이동/점프 기능 확인
+3. TitleScreen 필수 오브젝트 확인
+4. SampleLevel 씬 로드 확인
+5. 치명적 에러 로그 확인
+6. 주요 Staging 씬 로드 확인
 
 ## 자동화 파이프라인 확인 항목
 
