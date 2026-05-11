@@ -18,6 +18,12 @@ CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
 - License: MIT License
 - Original Project: Prototype - 2D Platformer Game
 
+## QA 문서
+
+- [BAT Test Plan](QA_Docs/BAT_TestPlan.md)
+- [BAT Test Cases](QA_Docs/BAT_TestCases.md)
+- [Automation Scope](QA_Docs/Automation_Scope.md)
+
 ---
 
 ## Original README
