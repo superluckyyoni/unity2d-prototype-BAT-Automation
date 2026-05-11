@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -55,6 +57,7 @@ public class ShadowCaster2DGenerator : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(ShadowCaster2DGenerator))]
 public class ShadowCaster2DGeneratorEditor : Editor
 {
@@ -72,6 +75,7 @@ public class ShadowCaster2DGeneratorEditor : Editor
             = GUILayout.Toggle(shadowCaster2DGenerator.ClearShadowCastersOnly, "Clear ShadowCaster2D Childs Only");
     }
 }
+#endif
 
 public class ShadowCaster2DReflection
 {

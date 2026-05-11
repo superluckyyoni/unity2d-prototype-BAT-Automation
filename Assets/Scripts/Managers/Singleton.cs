@@ -31,13 +31,26 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         // Todo Fix: Object prefab + in-scene thinks it got 2 instances by that & triggers the destruction
         if (s_instance && s_instance != this)
         {
-            if (Application.isPlaying) Destroy(this);
-            else UnityEditor.EditorApplication.delayCall += () => DestroyImmediate(this);
-            Debug.LogWarning($"Cannot create multiple instances of {s_instance.GetType()} component.\nAn instance is already attached to " +
-                $"\"{s_instance.name}\" object. Therefore, duplicate instance attached to \"{gameObject.name}\" object is destroyed.");
+            if (Application.isPlaying)
+            {
+                Destroy(this);
+            }
+            else
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.delayCall += () => DestroyImmediate(this);
+#else
+            Destroy(this);
+#endif
+            }
+
+            Debug.LogWarning($"Cannot create multiple instances of {s_instance.GetType()} component.\nAn instance is already attached to '" +
+                             $"{s_instance.name}' object. Therefore, duplicate instance attached to \"{gameObject.name}\" object is destroyed.");
         }
         else if (!s_instance)
+        {
             s_instance = this as T;
+        }
     }
 
     //private void PreventMultipleInstancesEditor()
