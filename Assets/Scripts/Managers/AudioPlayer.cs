@@ -34,7 +34,10 @@ public class AudioPlayer
             return _audioSource;
         }
     }
-    private bool IsPlayable => (_audioClips.Length > 0) && (_interruptOnPlay || !IsPlaying);
+    private bool IsPlayable => !Application.isBatchMode
+                           && _audioClips != null
+                           && _audioClips.Length > 0
+                           && (_interruptOnPlay || !IsPlaying);
     private bool IsPaused => AudioSource.clip && !AudioSource.isPlaying && AudioSource.time > 0f;
     private bool IsStopped => !AudioSource.clip && !AudioSource.isPlaying && AudioSource.time <= 0f;
     public bool IsPlaying => AudioSource.isPlaying;
