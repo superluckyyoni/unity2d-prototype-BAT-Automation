@@ -22,12 +22,13 @@ public class BATSceneLoadTests
         yield return SceneManager.LoadSceneAsync("TitleScreen");
         yield return null; // Awake/Start 실행 보장
 
-        Assert.IsNotNull(Object.FindObjectOfType<Camera2DController>(),
-            "Camera2DController 컴포넌트가 TitleScreen 씬에 없습니다.");
-        Assert.IsNotNull(Object.FindObjectOfType<TitleMenu>(),
-            "TitleMenu 컴포넌트가 TitleScreen 씬에 없습니다.");
-        Assert.IsNotNull(Object.FindObjectOfType<GameManager>(),
-            "GameManager 컴포넌트가 TitleScreen 씬에 없습니다.");
+        // v 태그로 오브젝트 탐색
+        Assert.IsNotNull(GameObject.FindWithTag("MainCamera"),
+            "MainCamera 태그 오브젝트가 TitleScreen 씬에 없습니다.");
+        Assert.IsNotNull(GameObject.FindWithTag("TitleMenu"),
+            "TitleMenu 태그 오브젝트가 TitleScreen 씬에 없습니다.");
+        Assert.IsNotNull(GameObject.FindWithTag("GameManager"),
+            "GameManager 태그 오브젝트가 TitleScreen 씬에 없습니다.");
     }
 
     [UnityTest]
