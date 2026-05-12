@@ -179,12 +179,12 @@ jobs:
           }
 
           with open("discord_payload.json", "w", encoding="utf-8") as f:
-              json.dump(payload, f, ensure_ascii=False)
-          PY
+    json.dump(payload, f, ensure_ascii=False)
+PY
 
-          curl -fsS \
-            -H "Content-Type: application/json" \
-            -H "User-Agent: GitHubActions-UnityBAT/1.0" \
-            -X POST \
-            --data @discord_payload.json \
-            "$DISCORD_WEBHOOK_URL"
+curl -fsS \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -H "User-Agent: GitHubActions-UnityBAT/1.0" \
+  -X POST \
+  --data-binary @discord_payload.json \
+  "$DISCORD_WEBHOOK_URL"
