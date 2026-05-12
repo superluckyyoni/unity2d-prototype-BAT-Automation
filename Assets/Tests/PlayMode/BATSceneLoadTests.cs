@@ -43,4 +43,10 @@ public class BATSceneLoadTests
         Assert.AreEqual("SampleLevel", loadedScene.name);
         Assert.IsTrue(loadedScene.isLoaded);
     }
+
+    [Test]
+    public void BAT999_ForcedFailure_DiscordNotificationTest()
+    {
+        Assert.Fail("Discord notification failure test.");
+    }
 }
