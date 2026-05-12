@@ -25,6 +25,18 @@ CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
 - [Automation Scope](QA_Docs/Automation_Scope.md)
 - [Test Result](QA_Docs/TestResult.md)
 
+## CI Test Result
+
+GitHub Actions를 통해 main 브랜치에 push될 때 Unity PlayMode BAT 테스트가 자동 실행되도록 구성했습니다.
+
+현재 PlayMode BAT 테스트 결과는 다음과 같습니다.
+
+- Test Mode: PlayMode
+- Test Framework: Unity Test Framework
+- Result: 3/3 Passed
+
+![GitHub Actions Test Result](QA_Docs/Images/github-actions-test-result.png)
+
 ---
 
 ## Original README
