@@ -50,3 +50,18 @@ CI 환경에서도 BAT 테스트 3개가 모두 정상 통과했습니다.
 ### GitHub Actions Workflow Log
 
 ![GitHub Actions Workflow Log](Images/github-actions-workflow-log.png)
+
+## Discord 알림 검증
+
+GitHub Actions 테스트 완료 후 Discord Webhook을 통해 성공/실패 결과가 자동 전송되도록 구성했습니다.
+
+성공 시에는 전체 BAT 통과 결과와 Actions 로그 링크를 전송하며,  
+실패 시에는 실패한 테스트명, 실패 사유, 코드 위치, Actions 로그 링크를 함께 전송하도록 구성했습니다.
+
+### Discord 성공 알림
+
+![Discord Success Notification](Images/discord-success-notification.png)
+
+### Discord 실패 알림
+
+![Discord Failure Notification](Images/discord-failure-notification.png)
