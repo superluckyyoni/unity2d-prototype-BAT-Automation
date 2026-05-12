@@ -17,6 +17,7 @@ public class TitleMenu : MonoBehaviour
     public AudioPlayer ConfirmSoundFX;
 
     private bool _pendingStartGame;
+    public bool PendingStartGame => _pendingStartGame;
 
     private void Awake()
     {
