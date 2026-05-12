@@ -40,8 +40,8 @@ public class UIMenuTests
     public IEnumerator FT_UI_003_StartGameTextDisabledAfterStart()
     {
         _titleMenu.StartCoroutine("StartGame");
-        // 씬 전환 전 딱 한 프레임만 대기
-        yield return new WaitForEndOfFrame();
+        // 코루틴 첫 줄 실행 후 바로 확인 (씬 전환 전)
+        yield return null;
         Assert.IsFalse(_titleMenu.StartGameText.enabled,
             "게임 시작 후 StartGameText가 비활성화되어야 합니다.");
     }
@@ -50,9 +50,7 @@ public class UIMenuTests
     public IEnumerator FT_UI_004_NoDuplicateStartGame()
     {
         _titleMenu.StartCoroutine("StartGame");
-        yield return new WaitForEndOfFrame();
-
-        // 첫 실행 직후 PendingStartGame이 true인지만 확인
+        yield return null;
         Assert.IsTrue(_titleMenu.PendingStartGame,
             "StartGame 실행 후 PendingStartGame이 true여야 합니다.");
     }
