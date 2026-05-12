@@ -10,34 +10,34 @@ public class BATSceneLoadTests
     public IEnumerator BAT001_TitleScreenScene_LoadsSuccessfully()
     {
         yield return SceneManager.LoadSceneAsync("TitleScreen");
-
         var loadedScene = SceneManager.GetActiveScene();
-        Assert.AreEqual("WrongSceneName", loadedScene.name, "Scene name is incorrect.");
-        Assert.IsTrue(loadedScene.isLoaded);
+        Assert.AreEqual("TitleScreen", loadedScene.name,
+            "Scene name is incorrect.");
+        Assert.IsTrue(loadedScene.isLoaded,
+            "Scene is not loaded.");
     }
 
     [UnityTest]
     public IEnumerator BAT002_TitleScreenRequiredObjects_Exist()
     {
         yield return SceneManager.LoadSceneAsync("TitleScreen");
-        yield return null; // Awake/Start 실행 보장
-
-        // v 태그로 오브젝트 탐색
+        yield return null;
         Assert.IsNotNull(GameObject.FindWithTag("MainCamera"),
-            "MainCamera 태그 오브젝트가 TitleScreen 씬에 없습니다.");
+            "MainCamera tag object is missing in TitleScreen scene.");
         Assert.IsNotNull(GameObject.FindWithTag("TitleMenu"),
-            "TitleMenu 태그 오브젝트가 TitleScreen 씬에 없습니다.");
+            "TitleMenu tag object is missing in TitleScreen scene.");
         Assert.IsNotNull(GameObject.FindWithTag("GameManager"),
-            "GameManager 태그 오브젝트가 TitleScreen 씬에 없습니다.");
+            "GameManager tag object is missing in TitleScreen scene.");
     }
 
     [UnityTest]
     public IEnumerator BAT003_SampleLevelScene_LoadsSuccessfully()
     {
         yield return SceneManager.LoadSceneAsync("SampleLevel");
-
         var loadedScene = SceneManager.GetActiveScene();
-        Assert.AreEqual("SampleLevel", loadedScene.name);
-        Assert.IsTrue(loadedScene.isLoaded);
+        Assert.AreEqual("SampleLevel", loadedScene.name,
+            "Scene name is incorrect.");
+        Assert.IsTrue(loadedScene.isLoaded,
+            "Scene is not loaded.");
     }
 }

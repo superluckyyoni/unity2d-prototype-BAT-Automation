@@ -16,23 +16,19 @@ public class UIMenuTests
         _titleMenu = Object.FindObjectOfType<TitleMenu>();
     }
 
-    // ── UI ──────────────────────────────────────
-
     [UnityTest]
     public IEnumerator FT_UI_001_StartGameTextExists()
     {
-        // StartGameText UI 요소가 존재하는지 확인
         Assert.IsNotNull(_titleMenu.StartGameText,
-            "StartGameText UI 요소가 없습니다.");
+            "StartGameText UI element is missing.");
         yield return null;
     }
 
     [UnityTest]
     public IEnumerator FT_UI_002_StartGameTextEnabledOnLoad()
     {
-        // 씬 로드 시 StartGameText가 활성화되어 있는지 확인
         Assert.IsTrue(_titleMenu.StartGameText.enabled,
-            "씬 로드 시 StartGameText가 활성화되어 있어야 합니다.");
+            "StartGameText should be enabled on scene load.");
         yield return null;
     }
 
@@ -40,37 +36,33 @@ public class UIMenuTests
     public IEnumerator FT_UI_003_StartGameTextDisabledAfterStart()
     {
         _titleMenu.StartCoroutine("StartGame");
-        // 코루틴 첫 줄 실행 후 바로 확인 (씬 전환 전)
         yield return null;
         Assert.IsFalse(_titleMenu.StartGameText.enabled,
-            "게임 시작 후 StartGameText가 비활성화되어야 합니다.");
+            "StartGameText should be disabled after game start.");
     }
 
     [UnityTest]
     public IEnumerator FT_UI_004_NoDuplicateStartGame()
     {
-        // 씬 전환 없이 플래그만 직접 설정해서 확인
         _titleMenu.SimulateStartGame();
         yield return null;
         Assert.IsTrue(_titleMenu.PendingStartGame,
-            "StartGame 실행 후 PendingStartGame이 true여야 합니다.");
+            "PendingStartGame should be true after StartGame is called.");
     }
 
     [UnityTest]
     public IEnumerator FT_UI_005_BackgroundMusicAssigned()
     {
-        // BackgroundMusic AudioClip이 Inspector에 할당되어 있는지 확인
         Assert.IsNotNull(_titleMenu.BackgroundMusic,
-            "BackgroundMusic이 Inspector에 할당되어 있어야 합니다.");
+            "BackgroundMusic should be assigned in Inspector.");
         yield return null;
     }
 
     [UnityTest]
     public IEnumerator FT_UI_006_AmbientSoundFXAssigned()
     {
-        // AmbientSoundFX AudioClip이 Inspector에 할당되어 있는지 확인
         Assert.IsNotNull(_titleMenu.AmbientSoundFX,
-            "AmbientSoundFX가 Inspector에 할당되어 있어야 합니다.");
+            "AmbientSoundFX should be assigned in Inspector.");
         yield return null;
     }
 }

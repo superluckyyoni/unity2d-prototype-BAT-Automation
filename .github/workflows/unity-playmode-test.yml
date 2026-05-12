@@ -49,11 +49,6 @@ jobs:
           name: unity-playmode-test-results
           path: artifacts
 
-      - name: Debug XML content
-        if: always()
-        run: |
-          find artifacts -name "*.xml" | head -1 | xargs cat
-
       - name: Send Discord notification
         if: always()
         env:
