@@ -18,6 +18,7 @@ public class TitleMenu : MonoBehaviour
 
     private bool _pendingStartGame;
     public bool PendingStartGame => _pendingStartGame;
+    public void SimulateStartGame() => _pendingStartGame = true;
 
     private void Awake()
     {

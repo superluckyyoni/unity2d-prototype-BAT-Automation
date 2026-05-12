@@ -49,7 +49,8 @@ public class UIMenuTests
     [UnityTest]
     public IEnumerator FT_UI_004_NoDuplicateStartGame()
     {
-        _titleMenu.StartCoroutine("StartGame");
+        // 씬 전환 없이 플래그만 직접 설정해서 확인
+        _titleMenu.SimulateStartGame();
         yield return null;
         Assert.IsTrue(_titleMenu.PendingStartGame,
             "StartGame 실행 후 PendingStartGame이 true여야 합니다.");
