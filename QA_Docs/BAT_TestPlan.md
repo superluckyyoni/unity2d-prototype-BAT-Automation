@@ -1,4 +1,4 @@
-# BAT Test Plan
+# Test Plan
  
 ## 1. 목적
  
