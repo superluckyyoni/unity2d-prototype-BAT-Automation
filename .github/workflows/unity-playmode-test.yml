@@ -60,10 +60,8 @@ jobs:
           import os
           import json
           import glob
-          import urllib.request
           import xml.etree.ElementTree as ET
 
-          webhook_url = os.environ["DISCORD_WEBHOOK_URL"]
           job_status = os.environ["JOB_STATUS"]
           run_url = os.environ["RUN_URL"]
 
@@ -83,10 +81,8 @@ jobs:
               return ""
 
           if result_files:
-              result_file = result_files[0]
-
               try:
-                  tree = ET.parse(result_file)
+                  tree = ET.parse(result_files[0])
                   root = tree.getroot()
 
                   total = root.attrib.get("total")
@@ -111,13 +107,11 @@ jobs:
                               message = get_child_text(failure, "message")
                               stack_trace = get_child_text(failure, "stack-trace")
 
-                          # 메시지가 너무 길면 디스코드 가독성을 위해 자름
                           if message:
                               message = message.replace("\n", " ").strip()
                               if len(message) > 300:
                                   message = message[:300] + "..."
 
-                          # 스택트레이스에서 Assets 경로가 포함된 첫 줄만 추출
                           location = ""
                           if stack_trace:
                               for line in stack_trace.splitlines():
@@ -146,7 +140,6 @@ jobs:
                   lines.append(f"✅ Unity BAT 결과: {passed}개 전부 통과!! 빌드는 테스트 가능합니다.")
               else:
                   lines.append("✅ Unity BAT 결과: 전부 통과!! 빌드는 테스트 가능합니다.")
-
           else:
               if passed is not None and failed is not None:
                   lines.append(f"❌ Unity BAT 결과: {passed}개 통과 / {failed}개 실패! 빌드 확인 필요!")
@@ -177,7 +170,6 @@ jobs:
 
           content = "\n".join(lines)
 
-          # Discord 메시지 길이 제한 대비
           if len(content) > 1900:
               content = content[:1900] + "\n...메시지가 길어 일부 생략되었습니다."
 
@@ -186,11 +178,13 @@ jobs:
               "content": content
           }
 
-          req = urllib.request.Request(
-              webhook_url,
-              data=json.dumps(payload).encode("utf-8"),
-              headers={"Content-Type": "application/json"}
-          )
-
-          urllib.request.urlopen(req)
+          with open("discord_payload.json", "w", encoding="utf-8") as f:
+              json.dump(payload, f, ensure_ascii=False)
           PY
+
+          curl -fsS \
+            -H "Content-Type: application/json" \
+            -H "User-Agent: GitHubActions-UnityBAT/1.0" \
+            -X POST \
+            --data @discord_payload.json \
+            "$DISCORD_WEBHOOK_URL"
