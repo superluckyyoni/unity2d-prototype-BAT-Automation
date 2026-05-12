@@ -82,7 +82,8 @@ jobs:
 
           if result_files:
               try:
-                  tree = ET.parse(result_files[0])
+                  with open(result_files[0], "r", encoding="utf-8-sig") as f:
+                      tree = ET.parse(f)
                   root = tree.getroot()
 
                   total = root.attrib.get("total")
