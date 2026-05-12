@@ -12,7 +12,7 @@ public class BATSceneLoadTests
         yield return SceneManager.LoadSceneAsync("TitleScreen");
 
         var loadedScene = SceneManager.GetActiveScene();
-        Assert.AreEqual("TitleScreen", loadedScene.name);
+        Assert.AreEqual("WrongSceneName", loadedScene.name);
         Assert.IsTrue(loadedScene.isLoaded);
     }
 
