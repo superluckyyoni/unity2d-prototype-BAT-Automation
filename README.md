@@ -21,7 +21,7 @@
  
 ## 기술 스택
  
-- Unity 2022.1.10f1
+- Unity
 - Unity Test Framework (PlayMode)
 - GitHub Actions CI
 - Discord Webhook
