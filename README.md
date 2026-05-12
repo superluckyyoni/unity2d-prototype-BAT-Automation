@@ -1,22 +1,71 @@
-# Unity2D-BAT-Automation
+# Unity2D BAT Automation
 
-공개 Unity 2D 플랫포머 프로젝트 기반 BAT 자동화 포트폴리오입니다.
+![Unity PlayMode BAT Test](https://github.com/superluckyyoni/unity2d-prototype-BAT-Automation/actions/workflows/unity-playmode-test.yml/badge.svg)
 
-## 포트폴리오 목적
+공개 Unity 2D 플랫포머 프로젝트를 fork하여 BAT(Build Acceptance Test) 자동화를 구현한 포트폴리오입니다.
 
-본 프로젝트는 공개 Unity 2D 프로젝트를 fork하여,  
-QA 자동화 포트폴리오 목적으로 BAT 테스트 설계 및 자동화 작업을 수행하는 프로젝트입니다.
+---
 
-원본 게임 프로젝트의 개발물이 아닌,  
-테스트 케이스 설계, Unity Test Framework 기반 자동화 테스트,  
-CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
+## 포트폴리오 작업 내용
 
-## 원본 프로젝트 정보
+게임 QA로 일하면서 신규 빌드가 나올 때마다 BAT를 수작업으로 반복하는 것이 비효율적이라고 느꼈습니다.
 
-- Original Repository: https://github.com/practical-works/unity2d-prototype
-- Unity Version: 2022.1.10f1
-- License: MIT License
-- Original Project: Prototype - 2D Platformer Game
+이를 해결하기 위해 공개 Unity 2D 프로젝트를 대상으로 BAT 테스트를 설계하고 자동화 구조를 직접 구현했습니다.
+
+- Unity Test Framework 기반 PlayMode BAT 테스트 3개 구현
+- GitHub Actions CI 연동 (push 시 자동 테스트 실행)
+- 디스코드 자동 알림 연동 (성공 시 통과 결과, 실패 시 테스트명/사유/코드 위치 전송)
+- 테스트 과정에서 발견한 컴파일 에러 직접 수정 (`#if UNITY_EDITOR` 조건부 컴파일 적용)
+
+---
+
+## 기술 스택
+
+- Unity 2022.1.10f1
+- Unity Test Framework (PlayMode)
+- GitHub Actions CI
+- Discord Webhook
+- C#
+
+---
+
+## 테스트 결과
+
+| TC ID | 테스트 항목 | 결과 |
+|---|---|---|
+| BAT001 | TitleScreen 씬 로드 확인 | ✅ Pass |
+| BAT002 | TitleScreen 필수 오브젝트 확인 | ✅ Pass |
+| BAT003 | SampleLevel 씬 로드 확인 | ✅ Pass |
+
+- Local Result: 3/3 Passed
+- CI Result: 3/3 Passed
+
+### GitHub Actions 실행 결과
+
+![GitHub Actions Test Result](QA_Docs/Images/github-actions-test-result.png)
+
+### 디스코드 자동 알림
+
+**성공 시**
+
+![Discord Success](QA_Docs/Images/discord-success-notification.png)
+
+**실패 시 (테스트명/사유/코드 위치 포함)**
+
+![Discord Failure](QA_Docs/Images/discord-failure-notification.png)
+
+---
+
+## 발견 및 수정한 이슈
+
+PlayMode 테스트 실행 중 Editor 전용 API 참조로 인해 컴파일 에러가 발생했습니다.
+
+수정 대상: `ShadowCaster2DGenerator.cs`, `Singleton.cs`, `Platformer2DAutomator.cs`
+
+`UnityEditor`, `CustomEditor`, `Handles`, `EditorApplication` 등 Editor 전용 API를
+`#if UNITY_EDITOR` 조건부 컴파일로 분리하여 해결했습니다.
+
+---
 
 ## QA 문서
 
@@ -25,109 +74,14 @@ CI 연동 및 테스트 결과 문서화를 주요 작업 범위로 합니다.
 - [Automation Scope](QA_Docs/Automation_Scope.md)
 - [Test Result](QA_Docs/TestResult.md)
 
-## CI Test Result
-
-GitHub Actions를 통해 main 브랜치에 push될 때 Unity PlayMode BAT 테스트가 자동 실행되도록 구성했습니다.
-
-현재 PlayMode BAT 테스트 결과는 다음과 같습니다.
-
-- Test Mode: PlayMode
-- Test Framework: Unity Test Framework
-- Result: 3/3 Passed
-
-![GitHub Actions Test Result](QA_Docs/Images/github-actions-test-result.png)
-
-테스트 완료 후 Discord Webhook을 통해 성공/실패 결과가 자동 전송되며,  
-실패 시 실패한 테스트명, 사유, 코드 위치를 함께 확인할 수 있습니다.
-
 ---
 
-## Original README
+## 원본 프로젝트 정보
 
-# 🎮 Prototype 
+- Original Repository: https://github.com/practical-works/unity2d-prototype
+- Unity Version: 2022.1.10f1
+- License: MIT License
+- Original Project: Prototype - 2D Platformer Game
 
-[![Unity](https://img.shields.io/badge/Unity-2022.1.10f1-blue?logo=unity)](https://github.com/topics/unity)
-[![C#](https://img.shields.io/badge/C%23-9.0-blue?logo=c-sharp)](https://github.com/topics/csharp)
-
-This is a sample **2D Platformer Game** unity project for learning and prototyping purposes.<br />
-It features some basic 2D game stuff for unity.
-
-![Screenshot0](./Screenshot0.gif)
-![Screenshot1](./Screenshot1.gif)
-![Screenshot2](./Screenshot2.gif)
-
-## 🎯 Objectives
-
-- [x] **🚀 Movement:**
-    - [x] **🏃 Platformer Movement _using [Physics 2D](https://docs.unity3d.com/Manual/Physics2DReference.html)_:**
-        - [x] Horizontal Movement.
-        - [x] Vertical Movement (Jump).
-    - [x] **🎞️ Movement Animations _using [Animator](https://docs.unity3d.com/Manual/AnimatorWindow.html) Parameters_.**
-    - [x] **🎞️ Movement-Dust-Effects Animations _by [Instantiating Objects](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) and using [Animator](https://docs.unity3d.com/Manual/AnimatorWindow.html) States Names_.**
-
-- [x] 🔌 **Mechanism:**
-    - 🚪 **Switches and Doors Mechanism:**
-        - [x] Switch for Multiple Doors.
-        - [x] Door for Multiple Switches.
-        - [x] Switch and Door Animations _by [Animating Transform Properties](https://docs.unity3d.com/Manual/animeditor-AnimatingAGameObject.html)_.
-
-- [x] 🤺 **Combat:**
-    - [x] **💥 Explosion Effect _using [Physics 2D](https://docs.unity3d.com/Manual/Physics2DReference.html)_.** 
-    - [x] **🎞️ Damage Animations.**
-    - [x] **🏹 Projectile Throwing _by [Instantiating Objects](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html)_ and _using [Animator](https://docs.unity3d.com/Manual/AnimatorWindow.html) Parameters_.**
-
-- [x] **🤖 Artificial Intelligence (AI):**
-    - **🏃 Automated Platformer Movement:**
-        - [x] Automated Horizontal Movement.
-    - [x] **👁️ Detections using _[Physics 2D LineCast](https://docs.unity3d.com/ScriptReference/Physics2D.Linecast.html)_:**
-        - [x] Wall Detection for Turning Round.
-        - [x] Floor Detection for Gap Avoidance.
-        - [x] Player Detection for Chase.
-    - [x] **🏹 Automated Projectile Throwing.**
-
-
-- [x] **🏕️ Environment:**
-    - [x] **🗺️ Map:**
-        - [x] Tile-Mapping _by [Nesting Objects](https://docs.unity3d.com/Manual/Hierarchy.html) (Classic)_.
-        - [x] Tile-Mapping _using [TileMap Components](https://docs.unity3d.com/Manual/class-Tilemap.html)_.
-    - [x] **🎥 Camera:**
-        - [x] Player-Follower Camera.
-        - [x] Smooth Camera Movement _using [Linear interpolation (Lerp)](https://en.wikipedia.org/wiki/Linear_interpolation)_.
-        - [x] Pixel Perfect Camera _using [Pixel Perfect Camera Component](https://docs.unity3d.com/Packages/com.unity.2d.pixel-perfect@4.0/manual/index.html)_.
-        - [x] Pixel Perfect Camera _using [Pixel Perfect Camera Component](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@13.1/manual/2d-pixelperfect.html) of [Universal Render Pipeline (URP)](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@13.1/manual/index.html)_.
-    - [x] **💡 Light:**
-        - [x] Lighting _using [Light Components](https://docs.unity3d.com/Manual/Lights.html) (3D)_.
-        - [x] Lighting _using [Light 2D Components](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@13.1/manual/Lights-2D-intro.html) of [Universal Render Pipeline (URP)](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@13.1/manual/index.html)_.
-    - [x] **📣 Audio _using [Audio Source Component](https://docs.unity3d.com/Manual/class-AudioSource.html)_:**
-        - [x] Background Music (BGM) with volume, pitch, and **looping** features _using [Audio Source Play](https://docs.unity3d.com/ScriptReference/AudioSource.Play.html)_.
-        - [x] Sound Effects (SFX) with volume, pitch, and **overlapping** features _using [Audio Source Play One Shot](https://docs.unity3d.com/ScriptReference/AudioSource.PlayOneShot.html)_.
-        - [x] Distance-Relative Audio _using 3D Sound Settings of [Audio Source Component](https://docs.unity3d.com/Manual/class-AudioSource.html)_.
-
-- [ ] **🔲 User Interface (UI):**
-    - [ ] **💯 Head-Up Display (HUD):**
-        - [ ] Health Bar.
-        - [ ] Score Counter.
-    - [ ] **🖼️ Title Menu:**
-        - [ ] 🚧 ...
-        - [ ] 🚧 ...
-        - [ ] 🚧 ...
-    - [ ] **⚙️ Settings Menu :**
-        - [ ] 🚧 ...
-        - [ ] 🚧 ...
-        - [ ] 🚧 ...
-
-## 🏭 Environment
-
-- Runtime: **[Windows](https://www.microsoft.com/en-us/windows) 10**
-- Game Engine: **[Unity](https://unity.com) 2022**
-- Scripts Language: **[C#](https://github.com/dotnet/csharplang) 9.0**
-- Scripts Editor: **[Visual Studio](https://visualstudio.microsoft.com) 2022**
-
-## 📚 Learning Resources
-
-- 📕 [Unity Documentation](https://docs.unity.com)
-- 📼 [Game Dev Beginner](https://www.youtube.com/@GameDevBeginner/videos)
-- 📼 [Unity 4 2D Essential Training](https://www.linkedin.com/learning/unity-4-2d-essential-training)
-
-## 📄 License
-[MIT](./LICENSE)
+본 레포지토리는 원본 프로젝트를 fork하여 QA 자동화 포트폴리오 목적으로 작업한 것입니다.
+게임 개발물이 아닌 테스트 설계 및 자동화 구현이 주요 작업 범위입니다.
