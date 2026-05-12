@@ -37,6 +37,9 @@ GitHub Actions를 통해 main 브랜치에 push될 때 Unity PlayMode BAT 테스
 
 ![GitHub Actions Test Result](QA_Docs/Images/github-actions-test-result.png)
 
+테스트 완료 후 Discord Webhook을 통해 성공/실패 결과가 자동 전송되며,  
+실패 시 실패한 테스트명, 사유, 코드 위치를 함께 확인할 수 있습니다.
+
 ---
 
 ## Original README
